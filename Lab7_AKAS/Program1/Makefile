@@ -1,19 +1,19 @@
 TARGET = num_cores
+SRC_DIR = src
+SRCS = $(wildcard $(SRC_DIR)/*.s)
+OBJS = $(SRCS:$(SRC_DIR)/%.s=$(SRC_DIR)/%.o)
+COMPILER = nasm -felf64
 
-SOURCE = num_cores.s
+$(TARGET): $(OBJS)
+	ld $(OBJS) -o $(TARGET)
 
-NASM_FLAGS = -f elf64
-
-$(TARGET): $(SOURCE)
-	nasm $(NASM_FLAGS) -o $(TARGET).o $(SOURCE)
-	ld -o $(TARGET) $(TARGET).o
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.s
+	$(COMPILER) $< -o $@
 
 clean:
-	rm -f $(TARGET) $(TARGET).o
+	rm -f $(SRC_DIR)/*.o $(TARGET)
 
+rebuild: clean $(TARGET)
 
-run: $(TARGET)
-	./$(TARGET)
-
-.PHONY: all clean run
+.PHONY: all clean rebuild
 all: $(TARGET)
