@@ -4,20 +4,18 @@ SECTION .text
 GLOBAL _start
 EXTERN num2decstr
 _start:
-	mov eax, 1
-	cpuid ; return processor info in eax
-	mov rax,rbx
-	mov rdi, hexstr
-	mov rcx, hexstr.len
-	mov rsi, digits
-	call num2decstr
-	WRITE hexstr, hexstr.len+1
-	EXIT
+    mov eax, 1
+    cpuid ; return processor info in eax
+    mov rax, rbx ; используем значение из rbx для примера
+    mov rdi, decstr
+    mov rcx, decstr.len
+    call num2decstr
+    WRITE decstr, decstr.len+1
+    EXIT
 ;======================================================
 SECTION .data
-digits: db "0123456789ABCDEF"
 align 4
-hexstr: db "000000000"
-.len: equ $ - hexstr
+decstr: db "000000000"
+.len: equ $ - decstr
 db 0xA
 ;======================================================
