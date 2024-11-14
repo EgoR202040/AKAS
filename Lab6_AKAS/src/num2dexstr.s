@@ -1,5 +1,5 @@
 section .data
-    digit_buffer times 20 db 0  ; Буфер для хранения
+    digit_buffer times 20 db 0  ; Буфер для хранения данных
 SECTION .text
 GLOBAL num2dexstr
 
