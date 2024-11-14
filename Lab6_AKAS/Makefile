@@ -1,4 +1,4 @@
-TARGET = cpuid
+TARGET = converter
 SRC_DIR = src
 SRCS = $(wildcard $(SRC_DIR)/*.s)
 OBJS = $(SRCS:$(SRC_DIR)/%.s=$(SRC_DIR)/%.o)

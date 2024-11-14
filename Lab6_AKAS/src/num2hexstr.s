@@ -1,5 +1,6 @@
-	SECTION .text
-	GLOBAL num2hexstr
+SECTION .text
+GLOBAL num2hexstr
+;---------------------------------------------- ;
 ;subroutine for convert number to hex string ;
 ;parameters: ;
 ; rax – number ;
@@ -15,11 +16,3 @@ num2hexstr:
 	shr rax, 4 ; сдвигаем число на одну цифру вправо
 	loop num2hexstr ; повторяем, пока rcx>0
 	ret
-;======================================================
-SECTION .data
-digits: db "0123456789ABCDEF"
-	align 4
-hexstr: db "000000000"
-.len: equ $ - hexstr
-	db 0xA
-;======================================================
